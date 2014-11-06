@@ -1,0 +1,7 @@
+#+CAPTION: Regression at the herd level
+|               | Estimate   | Std. Error   | z value   | Pr   |
+|---------------+------------+--------------+-----------+------------------|
+| (Intercept)   | -0.03      | 0.41         | -0.08     | 0.94             |
+| eir           | 1.78       | 1.46         | 1.22      | 0.22             |
+
+

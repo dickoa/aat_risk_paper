@@ -10,11 +10,18 @@
 {\bfseries A Spatio-temporal model of African Animal Trypanosomosis risk in Burkina-Faso}
 }\\
 
+
 %% Insert Author names, affiliations and corresponding author email.
 Ahmadou H. Dicko$^{1,2}$, 
 Giuliano Cecchi$^{3}$, 
 Fonta Williams$^{4}$, 
 Sanfo Safietou$^{4}$, 
+Adama Sow$^{6}$, 
+Lassane Percoma$^{6}$, 
+Soumaila Pagabeleguem$^{6}$,
+Rapha\"{e}lle M\'{e}tras$^{6}$,
+Issa Sidib\'{e}$^{6}$,
+Renaud Lancelot$^{5}$,
 J\'{e}r\'{e}my Bouyer$^{2,5,\ast}$
 \\
 \bf{1} D\'{e}partement d'\'{e}conomie, Universit\'{e} Cheikh Anta Diop, Dakar, Senegal
@@ -26,6 +33,8 @@ J\'{e}r\'{e}my Bouyer$^{2,5,\ast}$
 \bf{4} West African Science Service Center on Climate Change and adapted land use, Ouagadougou, Burkina Faso
 \\
 \bf{5} Centre de coop\'{e}ration internationale en recherche agronomique pour le d\'{e}veloppement, Montpellier, France
+\\
+\bf{6} NA
 \\
 $\ast$ E-mail: Corresponding author bouyer@cirad.fr
 \end{flushleft}
@@ -44,6 +53,7 @@ $\ast$ E-mail: Corresponding author bouyer@cirad.fr
 (add-to-list 'org-latex-packages-alist '("" "microtype"))
 (add-to-list 'org-latex-packages-alist '("" "rotating"))
 (add-to-list 'org-latex-packages-alist '("" "cite"))
+(add-to-list 'org-latex-packages-alist '("" "float"))
 (add-to-list 'org-latex-packages-alist '("usenames,dvipsnames" "color"))
 (add-to-list 'org-latex-packages-alist '("labelfont=bf,labelsep=period,justification=raggedright" "caption"))
 (setq org-latex-tables-booktabs nil)
@@ -88,81 +98,261 @@ Ahmadou H. Dicko, Giuliano Cecchi, Adama Sow, Lassane Percoma, Soumaila Pagabele
 ** Context and Importance of trypanosomoses
 In sub-Saharan Africa, African animal trypanosomoses (AAT) are among the main constraints to the development of cattle farming \cite{itard2003trypanosomoses}.
 The habitat and ecological environment of the tsetse flies (genus Glossina) have been modified through demographic and climatic pressures.
-Landscape  fragmentation has changed the distribution and densities of the vector, and has also affected the epidemiology of the disease by reducing host, vector and parasite diversities. 
+Landscape  fragmentation has changed the distribution and densities of the vector, and has also affected the epidemiology of the disease by reducing host, vector and parasite diversities \cite{van2010changing}. 
 In Burkina Faso, where the disease is endemic along the Mouhoun River basin, climatic and human factors, such as cattle and agriculture, have damaged the riverine landscapes over the last decades,
-leading to a fragmentation of gallery forests. Only two tsetse species remain, namely Glossina palpalis gambiensis Vanderplank and Glossina tachinoides Westwood (Diptera: Glossinidae); 
-and their presence and densities depend on the ecotype of riverine forest and its degree of disturbance. Several studies have investigated the impact of fragmentation on tsetse distribution, densities, 
-population structure and dispersal along the Mouhoun river basin. A longitudinal survey also investigated seasonal dynamics of tsetse and mechanical vectors of trypanosomoses have been investigated in landscapes of various fragmentation levels. 
-Environmental factors, namely temperature and relative humidity, appeared to structure tsetse distribution and densities in an opposite way than those of most species of mechanical vectors. Mean maximal temperature was also found highly correlated to tsetse infectious rate. 
-Finally, the cyclical risk of transmission of animal trypanosomoses was mapped during the dry season 2007 using the entomological inoculation index, corresponding to the product of tsetse fly apparent densities by  their infection rate. 
-The spatio-temporal modelling of tsetse apparent densities was also achieved in three sites along the Mouhoun river, where the longitudinal monitoring of cattle described below was conducted. 
-However, no spatio-temporal prediction model of the entomological inoculation index is presently available. The aim of this paper is to assess the risk of AAT  by developing a spatio-temporal statistical model of the entomological inoculation rate (EIR).  The final output of this model is thus  a spatio-temporal index linked to climatic variables upon which it will be possible to design a potential climate risk management package to control AAT
+leading to a fragmentation of gallery forests \cite{guerrini2008fragmentation}. Only two tsetse species remain, namely Glossina palpalis gambiensis Vanderplank and Glossina tachinoides Westwood (Diptera: Glossinidae); 
+and their presence and densities depend on the ecotype of riverine forest and its degree of disturbance \cite{bouyer2005phyto}. Several studies have investigated the impact of fragmentation on tsetse distribution, densities \cite{bouyer2005phyto}, 
+population structure and dispersal \cite{bouyer2007population, kone2010population} along the Mouhoun river basin. A longitudinal survey also investigated seasonal dynamics of tsetse and mechanical vectors of trypanosomoses have been investigated in landscapes of various fragmentation levels \cite{kone2010population}. 
+Environmental factors, namely temperature and relative humidity, appeared to structure tsetse distribution and densities in an opposite way than those of most species of mechanical vectors. Mean maximal temperature was also found highly correlated to tsetse infectious rate \cite{bouyer2013dynamics}. 
+Finally, the cyclical risk of transmission of animal trypanosomoses was mapped during the dry season 2007 using the entomological inoculation index, corresponding to the product of tsetse fly apparent densities by  their infection rate \cite{bouyer2006mapping, guerrini2007mapping}. 
+The spatio-temporal modeling of tsetse apparent densities was also achieved in three sites along the Mouhoun river, where the longitudinal monitoring of cattle described below was conducted \cite{sedda2010spatio}. 
+However, no spatio-temporal prediction model of the entomological inoculation index is presently available. 
+The aim of this paper is to assess the risk of AAT  by developing a spatio-temporal statistical model of the entomological inoculation rate (EIR).  
+The final output of this model is thus a spatio-temporal index linked to climatic variables upon which it will be possible to design some future climate risk management mechanisms to control AAT.
 
 * Material and methods
-** Environmental data
-The study use a rich time series of high spatial and temporal resolution to assess the spatio temporal risk of the disease.
-Moderate-resolution Imaging Spectroradiometer (MODIS) remote sensing products were downloaded, cleaned and summarized to 
-derive relevant environmental and climatic covariates. 
-The final set consists of 11 years of monthly MODIS data (NDVI, DLST, NLST) from January 2003 to December 2013.
-MODIS products and indices were selected to capture the complexity of the epidemiology of the African Animal Trypanosomosis.
-In particular, NDVI were used as index of vegetation and both DLST and NLST  were chosen as proxie for day and night temperature. 
-These MODIS products were acquired from NASA Earth Observing system data server and processed using the R package raster and MODIS 
-(see Appendix S1  for further details on these data) .
 ** Entomological data
 In Burkina Faso, tsetse eradication efforts, targeting the Northern part of the Mouhoun river basin 
-started in 2008 (http://www.pattec.bf/index1.php). 
+started in 2008 (http://www.pattec.bf/index1.php). During this eradication project an entomological sampling
+that generated an important amount of entomological data such as tsetse apparent density and their trypanosome infection rates were recorded. 
+Data from a recent entomological survey in Northern Ghana with the same type of of information were also used in this analysis \cite{adam2012bovine}.
+** Parasitological and serological data
+Data on bovine trypanosomosis used in this study originated from a parasitological and serological survey done in the Boucle du Mouhoun region in Burkina Faso.
+Approximatively 1000 villages were selected and around 2700 cattle were sampled between 
+september 2007 and november 2007. Both serological and parasitological status of each animal were assessed, information on sex, breed, age, livestock management were also recorded.
+The study and experimental design is thoroughly described in \cite{sow2013baseline}.
 
-** Serological and parasitological data
+** Environmental data
+This study used a rich time series of remote sensing data of high spatial and temporal resolution to assess the spatio-temporal risk of the disease.
+Firstly, Moderate-resolution Imaging Spectroradiometer (MODIS) remote sensing products and FAO Rainfall estimate (RFE version) were downloaded, cleaned 
+and summarized to derive relevant environmental and climatic covariates. 
+The final set of data consists of 11 years of monthly climatic data (NDVI, DLST, NLST, RFE) from January 2003 to December 2013.
+This set of raster data at 1km of spatial resolution was used to study the dynamic of the population of tsetse flies and saisonality of their infection rates.
+Secondly, to analyze the habitat of the two vectors present in the study area, Worldclim BIOCLIM variables \cite{hijmans2005worldclim}, aggregated bioclimatic variables based on the above remote sensing data (MODIS and RFE) and 
+a digital elevation model were also used.
+Finally, cattle density layers from \cite{robinsonmapping2014} and data on the main wild hosts from the african mammals databank \cite{union1999databank} were also added to the set of covariates
+to analyze the infection rates and population dynamic.  
+All the variables were selected and constructed to capture the complexity of the epidemiology of the African Animal Trypanosomosis.
+(see Appendix S1 for further details on these data).
+
 ** Models
 The goal of the main model is to compute the expected entomological inoculation rate in the study area using climatic and environmental data.
-EIR which is also known as tsetse challenge is an indicator of the number of infective bites a host received during a given time. This indicator is well known and used by malariologists to measure the intensity of the transmission of malaria.  In the case of AAT, it is known as tsetse challenge and it is calculated as the product of tsetse density and infection rates.
-For this analysis, we will separate the EIR in layers and for each layer one model will be fitted.
-The following layers were then considered:
+EIR which is also known as tsetse challenge is one of the most widely used and effective risk indicator for tsetse-borne diseases \cite{rogers1985trypanosomiasis}. 
+EIR represents the number of infective bites a host received during a given period of time. This indicator is well known and used by malariologists to measure the intensity of the transmission of malaria \cite{smith2005entomological}.  
+Some efforts have been made recently to map EIR using similar spatio-temporal entomological data \cite{rumisha2014modelling}. 
+
+It is calculated as the product of tsetse apparent density and trypanosome infection rates on tsetse.
+
+\noindent
+For a location $s$ at a time $t$, we thus have:
+
+\[
+EIR_{s,t} = ADT_{s, t}\ \times\ IR_{s, t}
+\]
+
+(ADT and IR are respectively the apparent density and infection rates).
+
+#+LATEX: \noindent
+For this study, we will separate the EIR in layers and for each layer one model will be fitted. The rationale for this choice is because the data used are from various sources
+and the data on infection rates on tsetse are not available in all the sample available. Therefore, to use all the data at hand, we decided to compute separately
+the apparent density and infection rates rather than a single model against the observed EIR.
+For the rest of this analysis, the following layers were then considered:
 - Tsetse habitat suitability
 - Tsetse apparent density
-- Tsetse infection rates
-The first layer, habitat suitability is not part of the mathematical definition of EIR but it is always implied that we measure the risk where the transmission can occur. Consequently, we will analyze  the habitat of the main species of tsetse fly in the study area order to estimate and predict the risk where the vectors can survive and transmit AAT.
+- Trypanosome infection rates in tsetse
+The first layer, habitat suitability is not part of the mathematical definition of EIR but it is always implied that we measure the risk where the transmission can occur. 
+Consequently, we will first analyze the habitat of the main vector of AAT in the study area before estimating and predict EIR where the vectors can survive and transmit AAT.
 
-*** Habitat suitability
+*** Tsetse habitat suitability
 This is the first layer of the risk index is the habitat suitability. 
 We will use this layer to delimit the area at risk where the vector of the disease can survive (the ecological niche).
-We then use species distribution models to computed the habitat suitability index . The methodology used to predict tsetse habitat suitability is based on the framework developed by Ahmadou {Dicko, 2014 #1204} in the Niayes areas (Senegal) using the Maximum Entropy (MaxEnt) model.
-MaxEnt is one of the most widely used species distribution models. It is a machine learning method based on the information theory concept of maximum entropy.  MaxEnt fit a species distribution by contrasting the environmental condition where the species is present to the global environment characterized by some generated pseudo-absence data also called background.
-The logistic output from MaxEnt is a suitability index that ranges between 0 (less suitable habitat) and 1 (highly suitable habitat).
+A statistical analysis of the habitat was carried using correlative species distribution models and 
+was thus used to computed the habitat suitability index. 
+The methodology used to predict tsetse habitat suitability is based on the framework developed by \cite{dicko2014using} in the Niayes areas (Senegal) using the Maximum Entropy model (MaxEnt).
+MaxEnt is one of the most widely used species distribution models. It is a machine learning method based on the information theory concept of maximum entropy \cite{elith2011statistical}.  
+MaxEnt fit a species distribution by contrasting the environmental condition where the species is present to the global environment characterized by some generated pseudo-absence data also called background.
+The logistic output from MaxEnt is a suitability index that ranges between 0 (less suitable habitat) and 1 (highly suitable habitat). It therefore permit to have a quantitative indicator of the habitat preferences
+of tsetse in the study area. During the modeling process, models complexity and tuning were done on the basis of likelihood based information criterion such as corrected Akaike information criterion (AICc) \cite{warren2011ecological}.
 
-*** Apparent density
+*** Tsetse apparent density
 The second layer of the risk index is the dynamic of the population of tsetse flies. 
 The predicted number of tsetse flies per month per km^2 were computed. 
-This layer was derived using a spatio-temporal regression models based on a zero inflated negative binomial model with random effects on the trapping site. The count of flies from traps were fitted against temperature related covariates (DLST, NLST) and the computed suitability index (first layer). 
+This layer was derived using a spatio-temporal regression models based on generalized mixed-models.
+A zero-inflated negative binomial model with random effects on the trapping site was fitted against environmental covariates.
+Zero-inflated negative binomial model can be seen as extension of the classical poisson regression by using a binomial distribution
+to model some potential structural zeros present in the data leaving the remaining zeros as count to be modeled by the poisson distribution.
+This model have been used to account for the excess of zeros due to the important number of location with no catch of flies. 
+Covariates were chosen according to the literature on tsetse ecology and as shown \cite{rogers1986distribution} by thermal and vegetation related covariates impact the dynamic of the population of tsetse flies through their direct effects on
+demographic parameters (birth, mortality, etc.). Because of the sampling bias and clustering of the observations in such entomological data, a random effect on the trapping site was used. 
+Furthermore, tsetse apparent densities usually show some seasonality patterns, therefore trigonometric functions were added to the fixed effect regression to control for this effect. 
+Finally, model selection and in particular the optimal temporal lag between environmental data and tsetse apparent density 
+was performed using likelihood based information criterion.
 
-*** Tsetse infection rates
+*** Trypanosome infection rates in tsetse
 The infection rates of tsetse fly represents the third and last layer of our risk index. 
-It was  analyzed using a generalized linear mixed model. 
-The infection of all flies by any of the major trypanosome strain in the study area (T. vivax, T. congolense and T. brucei) were investigated using In a logistic regression with a random effects on the trapping site.  This model was fitted using  the land surface temperature of the day and the night as principal covariates. 
+A fly was declared infected if any the major trypanosome strain was detected (T. vivax, T. congolense and T. brucei).
+It was also analyzed in the flexible framework of a generalized linear mixed model. 
+In particular, the analysis of the infection rates were investigated using a zero-inflated logistic regression with a random effect on the trapping site to account  
+for spatial heterogeneity in the data associated with a large number of structural non infection \cite{amek2011spatio, kasasa2013spatio}.
+According to \cite{molyneux1980host}, temperature and host availability are the most critical environmental aspect that influences trypanosome
+infection on tsetse. Consequently, the model was fitted using th DLST, NLST, cattle and wilds hosts densities as principal covariates and trigonometric functions were
+added to account for seasonality in infection rates. 
 
+*** Models validation
+For each layers, standard model quality metrics were used to analyze the accuracy and relevance of each models. 
+Discriminative power of the habitat suitability was assessed using classification metrics such as the Area Under the Curve (AUC), Percentage of correctly classified (PCC) and Cohen's Kappa metrics.
+Tsetse apparent density and infection rates were validated through residuals analysis, predictive performance on validation data and the use of pseudo-rsquared.
 
-*** Combination of the models and validation
-The risk index used is the EIR (tsetse challenge) and it is was combined as the product of the two layers and prediction was made on favorable areas (as defined by the suitability index). 
-standard model quality metrics help to validate models for each layer .we used the  Classification metrics such as the Area Under the Curve (AUC) and Percentage of correctly classified (PCC),
-to validate the species distribution model using information criteria and other likelihood based metrics like the deviance help to validate the model for apparent density and the model for infection rates.
-Finally, in order to have an external validation of the built index an assessment of the predictive ability of the model to forecast the prevalence of AAT and anemia has been done. 
+*** Combination of the models
+The combination of the last two layers on suitable habitat is an estimate of the EIR (tsetse challenge) and was used to assess the risk of AAT in Burkina Faso.
+All models used in each layer were validated using robusts approaches but in order to have an external validation of the built index,
+and assessment of its predictive ability to forecast the prevalence of AAT. Bovine trypanosomosis data were therefore analyzed and in particular
+the impact of the EIR on the probability of trypanosome infection by a bovine and EIR impact on herd prevalence has been done.
 
 * Results
-* Discussion
-** Mechanical transmission
-It has been suggested that, when tsetse tend to disappear, other biting flies like Tabanides or Stomoxines might also contribute to maintain AAT transmission, 
-through episodic epidemics, similarly to what is observed in South America for T. vivax. 
-Indeed, Tabanides which are very common in the study area, have been shown to transmit T. vivax at cumulative incidence rates as high as 63% (Atylotus agrestis) and 75% (Atylotus fuscipes) within 20 days, and T. congolense at a cumulative incidence rate of 25% (A. agrestis) 
-in experimental conditions. 
+** Tsetse habitat suitability
+NDVI related covariates and cumulative Rainfall estimate that describe vegetation and humidity was positively correlated with both the presence
+of G. p. gambiensis and G. tachinoides whereas high values of thermal related variables (DLST and NLST) was
+characterized with a low suitability index for both species. Figure 2 shows that rivers network are highly suitable with a wider
+distribution for G. tachinoides compared to G. p. gambiensis in the study area.
+The predictive power of each models was high with an AUC of 0.95 (resp. 0.91) for G. p. gambiensis (resp. G. tachinoides) and
+PCC for both species were greater than 80% (85% for G. p. gambiensis) (figure 3).
 
+** Tsetse apparent density
+Abundance of G. palpalis gambiensis was correlated with DLST and negatively correlated to NLST of the same month the catch was made.
+There is also positive impact of vegetation of the month before the fly was caught on its apparent density. 
+The relationship for G. p. gambiensis was in line with previous finding \cite{rogers1986distribution}. 
+Thermal data and vegetation had less impact on G. tachinoides apparent density which is known to resists to higher temperature 
+than G. p. gambiensis. The figure 4 showed model prediction and stationarity of residuals and we can conclude that both models
+capture most of the variability in tsetse apparent densities.
+ 
+** Trypanosome infection rates in tsetse
+Important infection rates of any of main trypanosomes on tsetse was associated with high temperature as
+expected from literature \cite{bouyer2013dynamics}. However, the negative correlation with cattle density (domestic host) in this study area is 
+surprising. It is possible that the role of domestic host as reservoir is less important compared to wild host.
+Nonetheless, the generalized linear mixed models used successfully model trypanosomosis infection rates on tsetse seasonality with all chosen variables significants. 
+
+** Entomological innoculation rates and AAT prevalence
+The computed EIR was high around around rivers bank during the dry saison and more 
+spread during the rainy season (figure 4) as expected from literature on AAT risk in West Africa \cite{michel2002modelling, bouyer2006mapping}. 
+The relationship between EIR and AAT prevalence was achieved through two binomial regressions models, one at the animal level and the second at the herd level.
+For each model, the best candidate (as assesed by AICc) was obtained within a radius of 3 km buffer and a temporal lag of 1 month. 
+Therefore, in each pixel, the estimated EIR can be considered as an advanced indicator (one month lag ahead) of AAT prevalence in a radius of 3 km. 
+The first model, fitted at the animal level (cow), used the race (zebu/taurin/cross) of the animal and its age as control variable. 
+The model shows an important impact of the EIR on infection probability (OR = 14.13, CI = ...) with a positive marginal effects (table 5, figure 6).
+The second model was fitted at the herd level. The coefficient of EIR was positive and the predicted prevalence using a testing set of herd data on prevalence shows a strong positive relationship and high predictive power (table6, figure 7).
+
+* Discussion
+The presents analysis presented is a first step in a future framework for
+an efficient climate risk management approach to control climate-sensitive diseases.  
+The methodology described in this study to develop to model the risk of AAT is generic and can used to design a  
+climate service to mitigate the risk of AAT. The same approach can be used to the management of other climate sensitive vector-borne
+diseases. The development and use of climate services in public health has increased and continues to grow specially in the context of a changing climate \cite{lowe2011spatio}.  
+However, despite the advocacy for a One Health approach \cite{smith2014one, okello2014one}, less efforts have been made in designing climate services to mitigate the risk of Human African Trypanosomosis (HAT).
+Nonetheless, we strongly believe that the model developed in this study can also serve as the basis for the design of an early warning system for sleeping sickness in West Africa.
+
+#+LATEX: \noindent
+The approach developed in this study allows some flexibility with the ability to model
+each aspect of the risk (EIR) using the state-of-the-art methodology for each compartiment. 
+However, there are some caveats using this "one layer - one model" approach due to  
+the increasing uncertainty that grows at each steps of the modeling process. 
+This uncertainty impact directly the estimated EIR. Therefore, further work are needed to have more robust approach to design spatio-temporal risk
+map based on sparse entomological data and evaluate these maps to serve as potential early warning system \cite{chaves2007comparing}.
+
+#+LATEX: \noindent
+Another aspect that is important to keep in mind regarding AAT risk in Burkina Faso is the role of mechanical transmission. 
+In fact, it has been suggested that, when tsetse tend to disappear, other biting flies like Tabanides or Stomoxines might also contribute to maintain AAT transmission, 
+through episodic epidemics, similarly to what is observed in South America for T. vivax (chagas disease). 
+Indeed, Tabanides which are very common in the study area, have been shown to transmit T. vivax at cumulative incidence rates as high as 63% (Atylotus agrestis) and 75% (Atylotus fuscipes) within 20 days, and T. congolense at a cumulative incidence rate of 25% (A. agrestis) 
+in experimental conditions. \cite{desquesnes2003mechanical} 
+
+* Conclusions
 * Acknowledgements
-The computations were performed by AHD.
-JB and AHD wrote the first draft.
+The computations were performed by AHD. etc....
 
 #+begin_src latex
-\bibliography{biblio/biblio}
+\bibliography{biblio}
+#+end_src
+
+* Figures
+
+#+begin_src latex
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{./figures/pres_data.pdf}
+\caption{Study area and entomological data}
+\end{figure}
+#+end_src
+
+#+begin_src latex
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.8]{./figures/sdm.pdf}
+\caption{Habitat suitability for G. p. gambiensis and G. tachinoides}
+\end{figure}
+#+end_src
+
+
+#+begin_src latex
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{./figures/auc.pdf}
+\caption{Habitat suitability for G. p. gambiensis and G. tachinoides}
+\end{figure}
+#+end_src
+
+
+#+begin_src latex
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.9]{./figures/eir.pdf}
+\caption{Predicted EIR aggregated at the season levels}
+\end{figure}
+#+end_src
+
+
+
+#+begin_src latex
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{./figures/margeff.pdf}
+\caption{Marginal effects of EIR on cattle infection probability}
+\end{figure}
+#+end_src
+
+
+#+begin_src latex
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.7]{./figures/predherd.pdf}
+\caption{Predicted herd prevalence against observed prevalence}
+\end{figure}
 #+end_src
 
 * Figure legends
 * Tables
+
+
+
+#+INCLUDE: "./tables/envdata.org" :minlevel 1
+#+INCLUDE: "./tables/gtdensreg.org" :minlevel 1
+#+INCLUDE: "./tables/gpgdensreg.org" :minlevel 1
+#+INCLUDE: "./tables/infecrates.org" :minlevel 1
+#+INCLUDE: "./tables/cattle.org" :minlevel 1
+#+INCLUDE: "./tables/herd.org" :minlevel 1
+
+# #+begin_src latex
+#   \input{./tables/envdata.tex}
+
+#   \input{./tables/gtdensreg.tex}
+
+#   \input{./tables/gpgdensreg.tex}
+
+#   \input{./tables/infecrates.tex}
+
+#   \input{./tables/cattle.tex}
+
+#   \input{./tables/herd.tex}
+# #+end_src
+
 * Supporting Information Legends

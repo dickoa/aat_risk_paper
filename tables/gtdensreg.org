@@ -1,0 +1,10 @@
+#+CAPTION: Zero-inflated negative binomial regression for G. tachinoides apparent density
+|               | Estimate   | Std. Error   | z value   | Pr   |
+|---------------+------------+--------------+-----------+------------------|
+| (Intercept)   | 1.21       | 0.63         | 1.90      | 0.06             |
+| dlst          | 0.00       | 0.01         | 0.24      | 0.81             |
+| nlst          | -0.02      | 0.03         | -0.85     | 0.40             |
+| ndviL1        | -0.14      | 0.65         | -0.22     | 0.83             |
+| cos2          | -0.17      | 0.18         | -0.91     | 0.36             |
+
+

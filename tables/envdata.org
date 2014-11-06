@@ -1,0 +1,11 @@
+#+CAPTION: Environmental covariates used
+| Name                                      | Variables   | Type          | Source      |
+|-------------------------------------------+-------------+---------------+-------------|
+| Day Land Surface Temperature              | DLST        | Climatic      | MODIS       |
+| Night Land Surface Temperature            | NLST        | Climatic      | MODIS       |
+| Rainfall Estimate                         | RFE         | Climatic      | FAO         |
+| Bio-climatic data                         | BIOCLIM     | Climatic      | WorldClim   |
+| Normalized Differenced Vegetation Index   | NDVI        | Vegetation    | MODIS       |
+| Middle Infra-Red                          | MIR         | Vegetation    | MODIS       |
+| Digital Elevation model                   | DEM         | Topographic   | SRTM        |
+

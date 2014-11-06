@@ -1,0 +1,8 @@
+#+CAPTION: Zero-inflated binomial regression for infection rates
+|               | Estimate   | Std. Error   | z value   | Pr   |
+|---------------+------------+--------------+-----------+------------------|
+| (Intercept)   | -4.22      | 0.83         | -5.10     | 0.00             |
+| dlst          | 0.10       | 0.02         | 5.14      | 0.00             |
+| cattledens    | -0.03      | 0.01         | -2.13     | 0.03             |
+| cos2          | -0.24      | 0.12         | -1.95     | 0.05             |
+
